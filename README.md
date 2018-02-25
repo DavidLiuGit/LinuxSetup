@@ -1,2 +1,6 @@
 # LinuxSetup
-quick scripts to help set up Linux environment just the way I like
+
+Like Ninite but for Linux and just for me
+
+|Script|Description|
+|`aliases.sh`| Add my aliases to .bashrc |
