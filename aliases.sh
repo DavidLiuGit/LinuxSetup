@@ -10,5 +10,3 @@ alias lessg="less +G"
 
 # quick search for file recursively in current and sub dirs
 alias ff="find . -iname "
-
-# 
