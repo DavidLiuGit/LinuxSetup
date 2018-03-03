@@ -22,6 +22,20 @@ echo
 command -v sl > /dev/null || read -p "Install steam locomotive? (y/n): " -n 1 -r REPLY_SL
 echo
 
+# install npm
+command -v npm > /dev/null || read -p "Install NPM? (y/n): " -n 1 -r REPLY_NPM
+echo
+
+# install reactjs & create-react-app, provided that npm is installed
+command -v npm > /dev/null && 
+command -v create-react-app > /dev/null || read -p "Install create-react-app? (y/n): " -n 1 -r REPLY_REACTJS
+echo
+
+# install babel, provided that npm is installed
+command -v npm > /dev/null &&
+command -v babel > /dev/null || read -p "Install babel? (y/n): " -n 1 -r REPLY_BABEL
+echo
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -61,7 +75,8 @@ apt-get moo
 if [[ $REPLY_GIT =~ ^[Yy]$ ]]
 then
 	echo "Installing git..."
-	yes Y | sudo apt install git
+	yes Y | sudo apt install git &&
+	git config --global push.default simple
 fi
 
 # install svn
@@ -76,6 +91,29 @@ if [[ $REPLY_SL =~ ^[Yy]$ ]]
 then
 	echo "Installing steam locomotive..."
 	yes Y | sudo apt install sl
+fi
+
+# install npm
+if [[ $REPLY_NPM =~ ^[Yy]$ ]]
+then
+	echo "Installing NPM..."
+	yes Y | sudo apt install npm
+	yes Y | sudo apt install nodejs-legacy
+fi
+
+# install reactjs & create-react-app
+if [[ $REPLY_REACTJS =~ ^[Yy]$ ]]
+then
+	echo "Installing React..."
+	yes Y | sudo npm install -g create-react-app
+fi
+
+# install babel & babel-cli
+if [[ $REPLY_BABEL =~ ^[Yy]$ ]]
+then
+	echo "Installing Babel..."
+	yes Y | sudo npm install -g babel
+	yes Y | sudo npm install -g babel-cli
 fi
 
 # install refind
