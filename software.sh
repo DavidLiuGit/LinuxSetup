@@ -59,6 +59,10 @@ echo
 command -v htop > /dev/null || read -p "Install htop? (y/n): " -n 1 -r REPLY_HTOP
 echo
 
+# prompt - install x2go server
+command -v x2goserver > /dev/null || read -p "Install x2go? (y/n): " -n 1 -r REPLY_X2GOSERVER
+echo
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -164,6 +168,15 @@ if [[ $REPLY_HTOP =~ ^[Yy]$ ]]
 then
 	echo "Installing htop..."
 	yes Y | sudo apt install htop
+fi
+
+# install htop
+if [[ $REPLY_X2GOSERVER =~ ^[Yy]$ ]]
+then
+	echo "Installing x2goserver..."
+	yes Y | sudo add-apt-repository ppa:x2go/stable &&
+	sudo apt-get update &&
+	yes Y | sudo apt-get install x2goserver x2goserver-xsession
 fi
 
 # install refind
