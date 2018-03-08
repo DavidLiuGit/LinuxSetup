@@ -84,6 +84,10 @@ echo
 command -v java > /dev/null || read -p "Install Java? (y/n: " -n 1 -r REPLY_JAVA
 echo
 
+# prompt - install nginx-light
+command -v nginx > /dev/null || read -p "Install nginx-light? (y/n): " -n 1 -r REPLY_NGINX_LIGHT
+echo
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -242,7 +246,14 @@ fi
 if [[ $REPLY_JAVA =~ ^[Yy]$ ]]
 then
 	echo "Installing java..."
-	yes Y | sudo apt install sudo apt-get install default-jre
+	yes Y | sudo apt-get install default-jre
+fi
+
+# install java
+if [[ $REPLY_NGINX_LIGHT =~ ^[Yy]$ ]]
+then
+	echo "Installing java..."
+	yes Y | sudo apt-get install nginx-light
 fi
 
 # install refind
