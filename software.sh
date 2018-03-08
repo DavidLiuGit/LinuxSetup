@@ -49,10 +49,6 @@ command -v npm > /dev/null &&
 command -v babel > /dev/null || read -p "Install babel? (y/n): " -n 1 -r REPLY_BABEL
 echo
 
-# prompt - refind (EFI boot mgr)
-dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
-echo
-
 command -v chromium-browser > /dev/null || read -p "Install chromium? (y/n): " -n 1 -r REPLY_CHROMIUM
 echo
 
@@ -74,6 +70,14 @@ echo
 
 # prompt - htop
 command -v htop > /dev/null || read -p "Install htop? (y/n): " -n 1 -r REPLY_HTOP
+echo
+
+# prompt - install x2go server
+command -v x2goserver > /dev/null || read -p "Install x2go? (y/n): " -n 1 -r REPLY_X2GOSERVER
+echo
+
+# prompt - refind (EFI boot mgr)
+dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
 
 #################################################################################
@@ -155,22 +159,13 @@ then
 	yes Y | sudo npm install -g babel-cli
 fi
 
-# install refind
-if [[ $REPLY_REFIND =~ ^[Yy]$ ]]
-then
-	echo "Installing refind..."
-	yes Y | sudo apt-add-repository ppa:rodsmith/refind &&
-	sudo apt-get update &&
-	yes Y | sudo apt-get install refind
-fi
-
 # install chromium
 if [[ $REPLY_CHROMIUM =~ ^[Yy]$ ]]
 then
 	echo "Installing chromium..."
-	sudo add-apt-repository ppa:canonical-chromium-builds/stage && 
+	yes Y | sudo add-apt-repository ppa:canonical-chromium-builds/stage && 
 	sudo apt-get update &&
-	sudo apt-get install chromium-browser
+	yes Y | sudo apt-get install chromium-browser
 fi
 
 # install VS Code
@@ -212,4 +207,22 @@ if [[ $REPLY_HTOP =~ ^[Yy]$ ]]
 then
 	echo "Installing htop..."
 	yes Y | sudo apt install htop
+fi
+
+# install htop
+if [[ $REPLY_X2GOSERVER =~ ^[Yy]$ ]]
+then
+	echo "Installing x2goserver..."
+	yes Y | sudo add-apt-repository ppa:x2go/stable &&
+	sudo apt-get update &&
+	yes Y | sudo apt-get install x2goserver x2goserver-xsession
+fi
+
+# install refind
+if [[ $REPLY_REFIND =~ ^[Yy]$ ]]
+then
+	echo "Installing refind..."
+	yes Y | sudo apt-add-repository ppa:rodsmith/refind &&
+	sudo apt-get update &&
+	yes Y | sudo apt-get install refind
 fi
