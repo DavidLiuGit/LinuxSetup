@@ -88,6 +88,9 @@ echo
 command -v nginx > /dev/null || read -p "Install nginx-light? (y/n): " -n 1 -r REPLY_NGINX_LIGHT
 echo
 
+# prompt - install gedit because fuck "scratch"
+command -v gedit > /dev/null || read -o "Install gedit? (y/n): " -n 1 -r REPLY_GEDIT
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -249,11 +252,18 @@ then
 	yes Y | sudo apt-get install default-jre
 fi
 
-# install java
+# install nginx-light
 if [[ $REPLY_NGINX_LIGHT =~ ^[Yy]$ ]]
 then
-	echo "Installing java..."
+	echo "Installing nginx-light..."
 	yes Y | sudo apt-get install nginx-light
+fi
+
+# install gedit
+if [[ $REPLY_NGINX_LIGHT =~ ^[Yy]$ ]]
+then
+	echo "Installing gedit..."
+	yes Y | sudo apt-get install gedit
 fi
 
 # install refind
