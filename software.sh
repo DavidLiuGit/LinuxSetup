@@ -80,6 +80,10 @@ echo
 command -v x2goclient > /dev/null || read -p "Install x2go client? (y/n): " -n 1 -r REPLY_X2GOCLIENT
 echo
 
+# prompt - install java
+command -v java > /dev/null || read -p "Install Java? (y/n: " -n 1 -r REPLY_JAVA
+echo
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -98,6 +102,7 @@ then
 	echo "Installing git..."
 	yes Y | sudo apt install git &&
 	git config --global push.default simple
+	git config --global alias.adog "log --all --decorate --oneline --graph"
 fi
 
 # install python2
@@ -231,6 +236,13 @@ then
 	yes Y | sudo add-apt-repository ppa:x2go/stable &&
 	sudo apt-get update &&
 	yes Y | sudo apt-get install x2goclient
+fi
+
+# install java
+if [[ $REPLY_JAVA =~ ^[Yy]$ ]]
+then
+	echo "Installing java..."
+	yes Y | sudo apt install sudo apt-get install default-jre
 fi
 
 # install refind
