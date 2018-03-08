@@ -173,10 +173,12 @@ fi
 # install htop
 if [[ $REPLY_X2GOSERVER =~ ^[Yy]$ ]]
 then
-	echo "Installing x2goserver..."
+	echo "Installing x2goserver and graphical desktop environment..."
 	yes Y | sudo add-apt-repository ppa:x2go/stable &&
 	sudo apt-get update &&
 	yes Y | sudo apt-get install x2goserver x2goserver-xsession
+	yes Y | sudo apt-get install x2golxdebindings
+	yes Y | apt-get install xfce4
 fi
 
 # install refind
