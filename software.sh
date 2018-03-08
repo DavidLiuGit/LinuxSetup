@@ -14,6 +14,19 @@ fi
 command -v git > /dev/null || read -p "Install git? (y/n): " -n 1 -r REPLY_GIT
 echo
 
+# prompt to install python, if not installed already
+command -v python > /dev/null || read -p "Install python? (y/n): " -n 1 -r REPLY_PYTHON
+echo
+command -v python3 > /dev/null || read -p "Install python 3? (y/n): " -n 1 -r REPLY_PYTHON3
+echo
+
+# prompt to install pip, if not installed already
+command -v pip > /dev/null || read -p "Install pip? (y/n): " -n 1 -r REPLY_PIP
+echo
+command -v pip3 > /dev/null || read -p "Install pip3? (y/n): " -n 1 -r REPLY_PIP3
+echo
+
+
 # prompt to install svn if not available
 command -v svn > /dev/null || read -p "Install subversion? (y/n): " -n 1 -r REPLY_SVN
 echo
@@ -77,6 +90,32 @@ then
 	echo "Installing git..."
 	yes Y | sudo apt install git &&
 	git config --global push.default simple
+fi
+
+# install python2
+if [[ $REPLY_PYTHON =~ ^[Yy]$ ]]
+then
+	echo "Installing python..."
+	yes Y | sudo apt install python
+fi
+# install python3
+if [[ $REPLY_PYTHON3 =~ ^[Yy]$ ]]
+then
+	echo "Installing python 3..."
+	yes Y | sudo apt install python3
+fi
+
+# install python2
+if [[ $REPLY_PIP =~ ^[Yy]$ ]]
+then
+	echo "Installing pip..."
+	yes Y | sudo apt install python-pip
+fi
+# install python2
+if [[ $REPLY_PIP3 =~ ^[Yy]$ ]]
+then
+	echo "Installing pip3..."
+	yes Y | sudo apt install python3-pip
 fi
 
 # install svn
