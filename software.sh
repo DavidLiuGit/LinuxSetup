@@ -73,7 +73,7 @@ command -v htop > /dev/null || read -p "Install htop? (y/n): " -n 1 -r REPLY_HTO
 echo
 
 # prompt - install x2go server
-command -v x2goserver > /dev/null || read -p "Install x2go? (y/n): " -n 1 -r REPLY_X2GOSERVER
+dpkg --list | grep x2goserver > /dev/null || read -p "Install x2go? (y/n): " -n 1 -r REPLY_X2GOSERVER
 echo
 
 # prompt - install x2go client
