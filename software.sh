@@ -90,6 +90,14 @@ echo
 
 # prompt - install gedit because fuck "scratch"
 command -v gedit > /dev/null || read -o "Install gedit? (y/n): " -n 1 -r REPLY_GEDIT
+echo
+
+# prompt - install darktable
+command -v darktable > /dev/null || read -p "Install Darktable? (y/n): " -n 1 -r REPLY_DARKTABLE
+echo
+
+command -v gparted > /dev/null || read -p "Install gparted? (y/n): " -n 1 -r REPLY_GPARTED
+echo
 
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
@@ -264,6 +272,20 @@ if [[ $REPLY_NGINX_LIGHT =~ ^[Yy]$ ]]
 then
 	echo "Installing gedit..."
 	yes Y | sudo apt-get install gedit
+fi
+
+# install darktable
+if [[ $REPLY_DARKTABLE =~ ^[Yy]$ ]]
+then
+	echo "Installing Darktable..."
+	yes Y | sudo apt-get install darktable
+fi
+
+# install gaprted
+if [[ $REPLY_GPARTED =~ ^[Yy]$ ]]
+then
+	echo "Installing gparted..."
+	yes Y | sudo apt-get install gparted
 fi
 
 # install refind
