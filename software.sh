@@ -73,7 +73,7 @@ command -v htop > /dev/null || read -p "Install htop? (y/n): " -n 1 -r REPLY_HTO
 echo
 
 # prompt - install x2go server
-dpkg --list | grep x2goserver > /dev/null || read -p "Install x2go? (y/n): " -n 1 -r REPLY_X2GOSERVER
+dpkg --list | grep x2goserver > /dev/null || read -p "Install x2go server? (y/n): " -n 1 -r REPLY_X2GOSERVER
 echo
 
 # prompt - install x2go client
@@ -81,7 +81,7 @@ command -v x2goclient > /dev/null || read -p "Install x2go client? (y/n): " -n 1
 echo
 
 # prompt - install java
-command -v java > /dev/null || read -p "Install Java? (y/n: " -n 1 -r REPLY_JAVA
+command -v java > /dev/null || read -p "Install Java? (y/n): " -n 1 -r REPLY_JAVA
 echo
 
 # prompt - install nginx-light
@@ -89,14 +89,19 @@ command -v nginx > /dev/null || read -p "Install nginx-light? (y/n): " -n 1 -r R
 echo
 
 # prompt - install gedit because fuck "scratch"
-command -v gedit > /dev/null || read -o "Install gedit? (y/n): " -n 1 -r REPLY_GEDIT
+command -v gedit > /dev/null || read -p "Install gedit? (y/n): " -n 1 -r REPLY_GEDIT
 echo
 
 # prompt - install darktable
 command -v darktable > /dev/null || read -p "Install Darktable? (y/n): " -n 1 -r REPLY_DARKTABLE
 echo
 
+# prompt - gparted
 command -v gparted > /dev/null || read -p "Install gparted? (y/n): " -n 1 -r REPLY_GPARTED
+echo
+
+# prompt - vim
+command -v vim > /dev/null || read -p "Install Vim? (y/n): " -n 1 -r REPLY_VIM
 echo
 
 # prompt - refind (EFI boot mgr)
@@ -171,7 +176,7 @@ fi
 # install reactjs & create-react-app
 if [[ $REPLY_REACTJS =~ ^[Yy]$ ]]
 then
-	echo "Installing React..."
+	echo "Installing create-react-app..."
 	yes Y | sudo npm install -g create-react-app
 fi
 
@@ -281,11 +286,18 @@ then
 	yes Y | sudo apt-get install darktable
 fi
 
-# install gaprted
+# install gparted
 if [[ $REPLY_GPARTED =~ ^[Yy]$ ]]
 then
 	echo "Installing gparted..."
 	yes Y | sudo apt-get install gparted
+fi
+
+# install vim
+if [[ $REPLY_VIM =~ ^[Yy]$ ]]
+then
+	echo "Installing Vim..."
+	yes Y | sudo apt-get install vim
 fi
 
 # install refind
