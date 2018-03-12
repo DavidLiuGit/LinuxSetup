@@ -26,6 +26,9 @@ echo
 command -v pip3 > /dev/null || read -p "Install pip3? (y/n): " -n 1 -r REPLY_PIP3
 echo
 
+# prompt to install gimp
+command -v gimp > /dev/null || read -p "Install GIMP? (y/n): " -n 1 -r REPLY_GIMP
+echo
 
 # prompt to install svn if not available
 command -v svn > /dev/null || read -p "Install subversion? (y/n): " -n 1 -r REPLY_SVN
@@ -163,6 +166,13 @@ if [[ $REPLY_SL =~ ^[Yy]$ ]]
 then
 	echo "Installing steam locomotive..."
 	yes Y | sudo apt install sl
+fi
+
+# install gimp
+if [[ $REPLY_GIMP =~ ^[Yy]$ ]]
+then
+	echo "Installing GIMP..."
+	yes | sudo apt install gimp
 fi
 
 # install npm
