@@ -107,6 +107,10 @@ echo
 command -v vim > /dev/null || read -p "Install Vim? (y/n): " -n 1 -r REPLY_VIM
 echo
 
+# prompt - Postgres
+command -v psql > /dev/null || read -p "Install PostgreSQL? (y/n): " -n 1 -r REPLY_PSQL
+echo
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -308,6 +312,13 @@ if [[ $REPLY_VIM =~ ^[Yy]$ ]]
 then
 	echo "Installing Vim..."
 	yes Y | sudo apt-get install vim
+fi
+
+# install Postgres
+if [[ $REPLY_PSQL =~ ^[Yy]$ ]]
+then
+	echo "Installing Postgres..."
+	yes Y | sudo apt-get install postgresql
 fi
 
 # install refind
