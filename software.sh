@@ -107,6 +107,10 @@ echo
 command -v vim > /dev/null || read -p "Install Vim? (y/n): " -n 1 -r REPLY_VIM
 echo
 
+# prompt - kompare
+command -v kompare > /dev/null || read -p "Install kompare? (y/n): " -n 1 -r REPLY_KOMPARE
+echo
+
 # prompt - Postgres
 command -v psql > /dev/null || read -p "Install PostgreSQL? (y/n): " -n 1 -r REPLY_PSQL
 echo
@@ -312,6 +316,13 @@ if [[ $REPLY_VIM =~ ^[Yy]$ ]]
 then
 	echo "Installing Vim..."
 	yes Y | sudo apt-get install vim
+fi
+
+# install kompare
+if [[ $REPLY_KOMPARE =~ ^[Yy]$ ]]
+then
+        echo "Installing kompare..."
+        yes Y | sudo apt-get install kompare
 fi
 
 # install Postgres
