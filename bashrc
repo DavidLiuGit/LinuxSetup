@@ -172,3 +172,4 @@ esac
 
 alias lessg="less +G" 
 alias ff="find . -iname "
+alias k9="kill -9 "
