@@ -30,6 +30,10 @@ echo
 command -v gimp > /dev/null || read -p "Install GIMP? (y/n): " -n 1 -r REPLY_GIMP
 echo
 
+# prompt to install inkscape 
+command -v inkscape > /dev/null || read -p "Install Inkscape? (y/n): " -n 1 -r REPLY_INKSCAPE
+echo
+
 # prompt to install svn if not available
 command -v svn > /dev/null || read -p "Install subversion? (y/n): " -n 1 -r REPLY_SVN
 echo
@@ -237,6 +241,16 @@ then
 	sudo apt-get update &&
 	yes Y | sudo apt-get install chromium-browser
 fi
+
+# install inkscape
+if [[ $REPLY_INKSCAPE =~ ^[Yy]$ ]]
+then
+        echo "Installing inkscape..."
+        yes Y | sudo add-apt-repository ppa:inkscape.dev/stable &&
+	sudo apt-get update &&
+        yes Y | sudo apt-get install inkscape
+fi
+
 
 # install VS Code
 if [[ $REPLY_CODE =~ ^[Yy]$ ]]
