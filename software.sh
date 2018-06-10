@@ -115,6 +115,10 @@ echo
 command -v psql > /dev/null || read -p "Install PostgreSQL? (y/n): " -n 1 -r REPLY_PSQL
 echo
 
+# prompt - VLC
+command -v vlc > /dev/null || read -p "Install VLC? (y/n): " -n 1 -r REPLY_VLC
+echo
+
 # prompt - refind (EFI boot mgr)
 dpkg --list | grep refind > /dev/null || read -p "Install refind boot manager? (y/n): " -n 1 -r REPLY_REFIND
 echo
@@ -323,6 +327,13 @@ if [[ $REPLY_KOMPARE =~ ^[Yy]$ ]]
 then
         echo "Installing kompare..."
         yes Y | sudo apt-get install kompare
+fi
+
+# install VLC
+if [[ $REPLY_KOMPARE =~ ^[Yy]$ ]]
+then
+        echo "Installing VLC..."
+        yes Y | sudo apt-get install vlc
 fi
 
 # install Postgres
