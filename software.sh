@@ -34,6 +34,10 @@ echo
 command -v svn > /dev/null || read -p "Install subversion? (y/n): " -n 1 -r REPLY_SVN
 echo
 
+# prompt to install pgp
+command -v pgp > /dev/null || read -p "Install PGP? (y/n): " -n 1 -r REPLY_PGP
+echo
+
 # install sl
 command -v sl > /dev/null || read -p "Install steam locomotive? (y/n): " -n 1 -r REPLY_SL
 echo
@@ -251,6 +255,13 @@ then
 	yes Y | sudo add-apt-repository ppa:philip.scott/elementary-tweaks &&
 	sudo apt-get update &&
 	sudo apt-get install elementary-tweaks
+fi
+
+# install htop
+if [[ $REPLY_PGP =~ ^[Yy]$ ]]
+then
+        echo "Installing PGP..."
+        yes Y | sudo apt install pgp
 fi
 
 # install htop
