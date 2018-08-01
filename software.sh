@@ -38,6 +38,10 @@ echo
 command -v pgp > /dev/null || read -p "Install PGP? (y/n): " -n 1 -r REPLY_PGP
 echo
 
+# prompt to install deluge
+command -v deluge > /dev/null || read -p "Install Deluge? (y/n): " -n 1 -r REPLY_DELUGE
+echo
+
 # install sl
 command -v sl > /dev/null || read -p "Install steam locomotive? (y/n): " -n 1 -r REPLY_SL
 echo
@@ -197,6 +201,13 @@ then
 	echo "Installing NPM..."
 	yes Y | sudo apt install npm
 	yes Y | sudo apt install nodejs-legacy
+fi
+
+# install deluge
+if [[ $REPLY_DELUGE =~ ^[Yy]$ ]]
+then
+        echo "Installing Deluge..."
+        yes | sudo apt install deluge
 fi
 
 # install reactjs & create-react-app
