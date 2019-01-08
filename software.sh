@@ -115,6 +115,10 @@ echo
 command -v vim > /dev/null || read -p "Install Vim? (y/n): " -n 1 -r REPLY_VIM
 echo
 
+# prompt - snapcraft
+command -v snap > /dev/null || read -p "Install Snapcraft? (y/n): " -n 1 -r REPLY_SNAP
+echo
+
 # prompt - kompare
 command -v kompare > /dev/null || read -p "Install kompare? (y/n): " -n 1 -r REPLY_KOMPARE
 echo
@@ -342,6 +346,13 @@ if [[ $REPLY_VIM =~ ^[Yy]$ ]]
 then
 	echo "Installing Vim..."
 	yes Y | sudo apt-get install vim
+fi
+
+# install snapcraft
+if [[ $REPLY_SNAP =~ ^[Yy]$ ]]
+then
+	echo "Installing Snapcraft..."
+	yes Y | sudo apt-get install snapd
 fi
 
 # install kompare
