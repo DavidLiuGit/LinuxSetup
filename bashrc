@@ -176,3 +176,5 @@ git config --global alias.adog "log --all --decorate --oneline --graph"
 alias lessg="less +G" 
 alias ff="find . -iname "
 alias k9="kill -9 "
+git config --global "alias.dag" "log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)"%an" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order"
+
